@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class MakeRepository @Inject constructor(private val service : MakeApi) {
 
-    suspend fun fetchProducts(products: Products) : List<Products>? {
+    suspend fun fetchProducts() : List<Products>? {
         return withContext(Dispatchers.Default){
             val responseMake = service.getMakes()
             val processedResponse = processData(responseMake)
