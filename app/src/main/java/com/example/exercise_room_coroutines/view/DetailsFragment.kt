@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.exercise_room_coroutines.databinding.FragmentDetailsBinding
 import com.example.exercise_room_coroutines.view_model.DetailsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private lateinit var detailsViewModel: DetailsViewModel
