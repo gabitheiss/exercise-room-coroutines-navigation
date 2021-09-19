@@ -1,4 +1,4 @@
-package com.example.exercise_room_coroutines
+package com.example.exercise_room_coroutines.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.exercise_room_coroutines.model.Products
