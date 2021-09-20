@@ -14,6 +14,11 @@ class Runner {
         return operation(num1, num2)
     }
 
+    //podemos tambem deixar generico
+    fun <T : Number>runOperation(num1: T, num2: T, operation: (T,T)-> T): T{
+        return operation(num1, num2)
+    }
+
     fun sum(num1: Int, num2: Int): Int{
         return num1 + num2
     }
