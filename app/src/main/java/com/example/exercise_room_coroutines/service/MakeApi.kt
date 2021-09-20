@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface MakeApi {
 
     @GET("/api/v1/products.json?brand=maybelline")
-    suspend fun getMakes() : Response<Products>
+    suspend fun getMakes() : Response<List<Products>>
 
 }

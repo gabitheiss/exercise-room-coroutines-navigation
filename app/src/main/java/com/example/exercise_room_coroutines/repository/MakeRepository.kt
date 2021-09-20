@@ -13,7 +13,7 @@ class MakeRepository @Inject constructor(private val service : MakeApi) {
         return withContext(Dispatchers.Default){
             val responseMake = service.getMakes()
             val processedResponse = processData(responseMake)
-            processedResponse?.products
+            processedResponse
         }
     }
 

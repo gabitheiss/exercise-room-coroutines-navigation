@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.exercise_room_coroutines.R
 import com.example.exercise_room_coroutines.adapter.ProductsAdapter
 import com.example.exercise_room_coroutines.databinding.FragmentProductsBinding
 import com.example.exercise_room_coroutines.model.Products
@@ -14,12 +17,13 @@ import com.example.exercise_room_coroutines.view_model.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProductsFragment : Fragment() {
+class ProductsFragment : Fragment(R.layout.fragment_products) {
 
     private lateinit var productsViewModel: ProductsViewModel
     private var _binding: FragmentProductsBinding? = null
+    private lateinit var recyclerView : RecyclerView
+
     private val adapterProducts = ProductsAdapter()
-    private lateinit var  bindingMakes : FragmentProductsBinding
     private val observerImages = Observer<List<Products>> {
         adapterProducts.update(it)
     }
@@ -35,9 +39,14 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindingMakes = FragmentProductsBinding.bind(view)
+        _binding = FragmentProductsBinding.bind(view)
         productsViewModel = ViewModelProvider(this).get(ProductsViewModel::class.java)
         productsViewModel.makes.observe(viewLifecycleOwner, observerImages)
+        recyclerView = _binding!!.recyclerViewLista
+        recyclerView.adapter = adapterProducts
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        productsViewModel.fetchProducts()
+
     }
 
     override fun onDestroyView() {
