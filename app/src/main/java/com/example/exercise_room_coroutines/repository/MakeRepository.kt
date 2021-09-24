@@ -21,5 +21,18 @@ class MakeRepository @Inject constructor(private val service : MakeApi) {
         return if (response.isSuccessful) response.body()
         else null
     }
+
+    //funcao para teste com ->
+    suspend fun fetchProductsCallback(onComplete: (String) -> Unit) {
+        val response = withContext(Dispatchers.Default) {
+            service.getMakes()
+        }
+        if (response.isSuccessful) {
+            onComplete("Success")
+        } else {
+            onComplete("Failure")
+        }
+    }
+
 }
 
